@@ -80,11 +80,11 @@ function HeartBeatTracker() {
     return (
       <div>
         <div className="flex w-full">
-          <div className="grid h-20 flex-grow place-items-center">
+          <div className="grid h-20 flex-grow place-items-center text-lg">
             Timer: {state.timer}
           </div>
           <div className="divider divider-horizontal" />
-          <div className="grid h-20 flex-grow place-items-center">
+          <div className="grid h-20 flex-grow place-items-center text-lg">
             Beats: {state.beatCount}
           </div>
         </div>
@@ -100,7 +100,7 @@ function HeartBeatTracker() {
     <div className="flex items-center justify-center h-screen">
       <div className="card h-1/4 w-1/4 bg-base-100 shadow-xl">
         <div className="card-body">
-          <h2 className="card-title">Heat Beat Tracker</h2>
+          <h2 className="card-title">Heart Beat Tracker</h2>
           {state.trackMode ? trackingDetails() : instructionDetails()}
         </div>
 
