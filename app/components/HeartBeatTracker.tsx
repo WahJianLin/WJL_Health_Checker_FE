@@ -79,8 +79,15 @@ function HeartBeatTracker() {
   const trackingDetails = (): JSX.Element => {
     return (
       <div>
-        <p>Timer: {state.timer}</p>
-        <p>Beats: {state.beatCount}</p>
+        <div className="flex w-full">
+          <div className="grid h-20 flex-grow place-items-center">
+            Timer: {state.timer}
+          </div>
+          <div className="divider divider-horizontal" />
+          <div className="grid h-20 flex-grow place-items-center">
+            Beats: {state.beatCount}
+          </div>
+        </div>
       </div>
     );
   };
