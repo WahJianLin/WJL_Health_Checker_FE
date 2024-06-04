@@ -1,12 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import HeartBeatClicker from "./HeartBeatClicker";
+import { STATUS } from "./helper/constants";
 
 function HeartBeatTracker() {
   const [state, setState] = useState<State>({
     timer: 0,
     beatCount: 0,
-    trackMode: false,
+    status: STATUS.READY,
     canClick: true,
   });
 
@@ -19,7 +20,7 @@ function HeartBeatTracker() {
       case state.beatCount <= 81:
         return "Your heart rate is decent. Being a standard human is good enought. Keep up the good work.";
       case state.beatCount <= 101:
-        return "Your heart rate is acceptable, but could use some work. Go on some more walks or jobs you basic human. ";
+        return "Your heart rate is acceptable, but could use some work. Go on some more walks or jogs you basic human. ";
       default:
         return "Your heart needs your help. Please eat better and exercise regularly. Your body can use it you below average human.";
     }
@@ -32,12 +33,12 @@ function HeartBeatTracker() {
   } beats per minute. ${heartRateBlurb()}`;
 
   useEffect(() => {
-    if (state.trackMode) {
+    if (state.status === STATUS.TRACKING) {
       const decrementTimer = () => {
         setState((prevState) => ({
           ...prevState,
           timer: prevState.timer - 1,
-          trackMode: prevState.timer - 1 > 0,
+          status: prevState.timer - 1 > 0 ? STATUS.TRACKING : STATUS.READY,
           canClick: prevState.timer - 1 > 0,
         }));
       };
@@ -53,10 +54,10 @@ function HeartBeatTracker() {
         }));
       };
 
-      const timerId = setInterval(decrementTimer, 1500);
+      const timerId = setInterval(decrementTimer, 3000);
       return () => clearInterval(timerId);
     }
-  }, [state.trackMode]);
+  }, [state.status]);
 
   const incrementBeatCount: () => void = () => {
     setState((prevState) => ({
@@ -69,7 +70,7 @@ function HeartBeatTracker() {
     if (state.canClick) {
       setState((prevState) => ({
         ...prevState,
-        trackMode: true,
+        status: STATUS.TRACKING,
         timer: 30,
         beatCount: 1,
       }));
@@ -80,11 +81,11 @@ function HeartBeatTracker() {
     return (
       <div>
         <div className="flex w-full">
-          <div className="grid h-20 flex-grow place-items-center text-lg">
+          <div className="grid h-20 w-1/2 place-items-center text-lg">
             Timer: {state.timer}
           </div>
           <div className="divider divider-horizontal" />
-          <div className="grid h-20 flex-grow place-items-center text-lg">
+          <div className="grid h-20 w-1/2 place-items-center text-lg">
             Beats: {state.beatCount}
           </div>
         </div>
@@ -96,18 +97,27 @@ function HeartBeatTracker() {
     return <div>{state.beatCount > 1 ? resultsBlurb : instructionBlurb}</div>;
   };
 
+  const getContentString = (): string => {
+    if (state.status) {
+      return "Click here to track heart beat";
+    } else {
+      return "Click here to start tracking";
+    }
+  };
+
   return (
     <div className="flex items-center justify-center h-screen">
-      <div className="card h-1/4 w-1/4 bg-base-100 shadow-xl">
+      <div className="card h-2/5 w-2/5 bg-base-100 shadow-xl">
         <div className="card-body">
           <h2 className="card-title">Heart Beat Tracker</h2>
-          {state.trackMode ? trackingDetails() : instructionDetails()}
+          {state.status ? trackingDetails() : instructionDetails()}
         </div>
 
         <HeartBeatClicker
-          trackMode={state.trackMode}
+          status={state.status}
           triggerTracking={triggerTracking}
           increaseBeatCount={incrementBeatCount}
+          content={getContentString()}
         />
       </div>
     </div>
@@ -116,7 +126,7 @@ function HeartBeatTracker() {
 
 interface State {
   readonly canClick: boolean;
-  readonly trackMode: boolean;
+  readonly status: STATUS;
   readonly beatCount: number;
   readonly timer: number;
 }

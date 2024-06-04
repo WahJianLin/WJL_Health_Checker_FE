@@ -1,0 +1,6 @@
+export enum STATUS {
+  READY,
+  START_COUNTDOWN,
+  TRACKING,
+  RESETTING
+}
