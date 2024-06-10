@@ -1,9 +1,7 @@
 import Link from "next/link";
-import MainHeaderNavBar from "./components/Navbar";
-
 export default function Home() {
   return (
-    <main>
+    <div>
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content text-center">
           <div className="max-w-md">
@@ -17,6 +15,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-    </main>
+    </div>
   );
 }

@@ -38,7 +38,7 @@ function HeartBeatTracker() {
       const decrementTimer = () => {
         setState((prevState) => ({
           ...prevState,
-          timer: prevState.timer - 1 > 0 ? prevState.timer - 1 : 5,
+          timer: prevState.timer - 1 > 0 ? prevState.timer - 1 : 30,
           status: prevState.timer - 1 > 0 ? prevState.status : STATUS.TRACKING,
         }));
       };
@@ -64,7 +64,7 @@ function HeartBeatTracker() {
         }));
       };
 
-      const timerId = setInterval(decrementTimer, 1500);
+      const timerId = setInterval(decrementTimer, 5000);
       return () => clearInterval(timerId);
     }
     
@@ -115,12 +115,14 @@ function HeartBeatTracker() {
       return `${state.timer}`;
     } else if (state.status === STATUS.TRACKING) {
       return "Click here to track heart beat";
-    } else 
+    } else if (state.status === STATUS.RESETTING){
+      return "Resetting...";
+    }
     return "";
   };
 
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className="flex items-center justify-center h-[90vh]">
       <div className="card h-2/5 w-2/5 bg-base-100 shadow-xl">
         <div className="card-body">
           <h2 className="card-title">Heart Beat Tracker</h2>

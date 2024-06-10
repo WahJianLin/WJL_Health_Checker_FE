@@ -4,7 +4,7 @@ import HeartBeatTracker from "../components/HeartBeatTracker";
 function HeartPage(props: Props) {
   return (
     <div> 
-      <HeartBeatTracker />
+      <HeartBeatTracker/>
     </div>
   )
 };

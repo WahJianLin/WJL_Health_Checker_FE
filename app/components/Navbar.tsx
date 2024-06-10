@@ -4,7 +4,7 @@ import NavbarButton from "./NavbarButton";
 
 function Navbar() {
   return (
-    <div className="navbar bg-gray-200 ">
+    <div className="navbar bg-gray-200">
       <div className="flex-1">
         <Link href="./">
           <svg
