@@ -3,10 +3,11 @@ import React from "react";
 import { STATUS } from "./helper/constants";
 
 function HeartBeatClicker(props: Props) {
-  //${props.status === STATUS.TRACKING ? "bg-base-300" : "bg-base-300"}
   return (
     <div
-      className={`${props.canClick ? "bg-base-300" : "bg-gray-300"} h-2/3 rounded-b-lg flex items-center justify-center select-none cursor-pointer`}
+      className={`${
+        props.canClick ? "bg-base-300" : "bg-gray-300"
+      } h-2/3 rounded-b-lg flex items-center justify-center select-none cursor-pointer`}
       onClick={
         props.status === STATUS.TRACKING
           ? props.increaseBeatCount

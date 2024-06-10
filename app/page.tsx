@@ -11,7 +11,9 @@ export default function Home() {
               track my own health. This is a work in progress and more features
               will be added later.
             </p>
-            <Link className="btn btn-primary" href={"./heart-beat-tracker"}>Click here to get started</Link>
+            <Link className="btn btn-primary" href={"./heart-beat-tracker"}>
+              Click here to get started
+            </Link>
           </div>
         </div>
       </div>

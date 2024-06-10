@@ -7,10 +7,11 @@ function HeartBeatTracker() {
   const [state, setState] = useState<State>({
     timer: 0,
     beatCount: 0,
-    status: STATUS.READY
+    status: STATUS.READY,
   });
 
-  const canClick: boolean = state.status === STATUS.READY || state.status === STATUS.TRACKING;
+  const canClick: boolean =
+    state.status === STATUS.READY || state.status === STATUS.TRACKING;
 
   const heartRateBlurb = (): String => {
     switch (true) {
@@ -50,13 +51,16 @@ function HeartBeatTracker() {
           ...prevState,
           timer: prevState.timer - 1,
           status: prevState.timer - 1 > 0 ? prevState.status : STATUS.RESETTING,
-          beatCount: prevState.timer - 1 > 0 ? prevState.beatCount : prevState.beatCount * 2 
+          beatCount:
+            prevState.timer - 1 > 0
+              ? prevState.beatCount
+              : prevState.beatCount * 2,
         }));
       };
 
       const timerId = setInterval(decrementTimer, 1000);
       return () => clearInterval(timerId);
-    } else if ( state.status === STATUS.RESETTING ) {
+    } else if (state.status === STATUS.RESETTING) {
       const decrementTimer = () => {
         setState((prevState) => ({
           ...prevState,
@@ -67,7 +71,6 @@ function HeartBeatTracker() {
       const timerId = setInterval(decrementTimer, 5000);
       return () => clearInterval(timerId);
     }
-    
   }, [state.status]);
 
   const incrementBeatCount: () => void = () => {
@@ -83,7 +86,7 @@ function HeartBeatTracker() {
         ...prevState,
         status: STATUS.START_COUNTDOWN,
         timer: 3,
-        beatCount: 0
+        beatCount: 0,
       }));
     }
   };
@@ -109,13 +112,13 @@ function HeartBeatTracker() {
   };
 
   const getContentString = (): string => {
-    if (state.status === STATUS.READY){
+    if (state.status === STATUS.READY) {
       return "Click here to start tracking";
     } else if (state.status === STATUS.START_COUNTDOWN) {
       return `${state.timer}`;
     } else if (state.status === STATUS.TRACKING) {
       return "Click here to track heart beat";
-    } else if (state.status === STATUS.RESETTING){
+    } else if (state.status === STATUS.RESETTING) {
       return "Resetting...";
     }
     return "";
@@ -126,7 +129,9 @@ function HeartBeatTracker() {
       <div className="card h-2/5 w-2/5 bg-base-100 shadow-xl">
         <div className="card-body">
           <h2 className="card-title">Heart Beat Tracker</h2>
-          {state.status === STATUS.TRACKING ? trackingDetails() : instructionDetails()}
+          {state.status === STATUS.TRACKING
+            ? trackingDetails()
+            : instructionDetails()}
         </div>
         <HeartBeatClicker
           canClick={canClick}
