@@ -11,7 +11,7 @@ function UpcomingPage() {
         </thead>
         <tbody>
           <tr>
-            <td>Create the heart beat checker tool</td>
+            <td>Modify to be mobile friendly</td>
           </tr>
           <tr>
             <td>Add in ways to save heart beat data to database</td>
@@ -20,7 +20,10 @@ function UpcomingPage() {
             <td>Allow users to view their pervious heart beats</td>
           </tr>
           <tr>
-            <td>On the heart beat tracker page, add heart facts around the page to fill out white space</td>
+            <td>
+              On the heart beat tracker page, add heart facts around the page to
+              fill out white space
+            </td>
           </tr>
         </tbody>
       </table>

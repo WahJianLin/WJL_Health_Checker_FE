@@ -1,9 +1,7 @@
 import Link from "next/link";
-import MainHeaderNavBar from "./components/Navbar";
-
 export default function Home() {
   return (
-    <main>
+    <div>
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content text-center">
           <div className="max-w-md">
@@ -13,10 +11,12 @@ export default function Home() {
               track my own health. This is a work in progress and more features
               will be added later.
             </p>
-            <Link className="btn btn-primary" href={"./heart-beat-tracker"}>Click here to get started</Link>
+            <Link className="btn btn-primary" href={"./heart-beat-tracker"}>
+              Click here to get started
+            </Link>
           </div>
         </div>
       </div>
-    </main>
+    </div>
   );
 }

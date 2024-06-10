@@ -1,15 +1,14 @@
-import React from "react"
+import React from "react";
 import HeartBeatTracker from "../components/HeartBeatTracker";
 
 function HeartPage(props: Props) {
   return (
-    <div> 
+    <div>
       <HeartBeatTracker />
     </div>
-  )
-};
-
-interface Props {
+  );
 }
+
+interface Props {}
 
 export default HeartPage;
